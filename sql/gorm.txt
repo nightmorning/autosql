@@ -1,0 +1,82 @@
+func GetTableById(id int) (Table, bool) {
+	var table Table
+	ok := db.Where("primary_key = ?", id).First(&table).RecordNotFound()
+
+	return table, ok
+}
+
+func GetTableByOne(condition []string) (Table, bool) {
+	var table Table
+	ok := db.Where(condition).First(&table).RecordNotFound()
+
+	return table, ok
+}
+
+func GetTableList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+	tables := make([]*Table, 0)
+	orderBys := strings.Join(orderBy, ",");
+
+	offset := (page - 1)*pageSize
+	err := db.
+		Where(condition).
+		Order(orderBys).
+		Offset(offset).
+		Limit(pageSize).
+		Find(&tables).
+		Error
+
+	return tables, err
+}
+
+func GetTableCount(condition []string) int {
+	var table Table
+	count := 0
+	db.Where(condition).Find(&table).Count(&count)
+
+	return count
+}
+
+func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+	list,err := GetTableList(condition, page, pageSize, orderBy)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	count := GetTableCount(condition)
+
+	return common.PageUtil(count, page, pageSize, list)
+}
+
+func DeleteTableByIds(ids string) (error) {
+	var table Table
+	err := db.Where("id IN  ?", ids).Delete(&table).Error
+
+	return err
+}
+
+func DeleteTableById(id int64) error {
+	var table Table
+	table.TableId = id
+	err := db.Delete(&table).Error
+
+	return err
+}
+
+func CreateTable(table Table) (Table, error) {
+	err := db.Create(&table).Error
+
+	return table, err
+}
+
+func UpdateTable(condition []string, params map[string]interface{}) error {
+	var table Table
+	err := db.Model(&table).Where(condition).Updates(params).Error
+
+	return err
+}
+
+func SaveTable(table Table) error {
+	err := db.Save(&table).Error
+
+	return err
+}
