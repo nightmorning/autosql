@@ -11,19 +11,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetGroupById(id int) (Group, bool) {
 	var group Group
-	ok := db.Where("group_id = ?", id).First(&group).RecordNotFound()
+	ok := db.First(&group, id).RecordNotFound()
 
 	return group, ok
 }
 
-func GetGroupByOne(condition []string) (Group, bool) {
+func GetGroupByOne(condition map[string]interface{}) (Group, bool) {
 	var group Group
 	ok := db.Where(condition).First(&group).RecordNotFound()
 
 	return group, ok
 }
 
-func GetGroupList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetGroupList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	groups := make([]*Group, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -39,7 +39,7 @@ func GetGroupList(condition []string, page int, pageSize int, orderBy []string) 
 	return groups, err
 }
 
-func GetGroupCount(condition []string) int {
+func GetGroupCount(condition map[string]interface{}) int {
 	var group Group
 	count := 0
 	db.Where(condition).Find(&group).Count(&count)
@@ -47,7 +47,7 @@ func GetGroupCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetGroupList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -79,7 +79,7 @@ func CreateGroup(group Group) (Group, error) {
 	return group, err
 }
 
-func UpdateGroup(condition []string, params map[string]interface{}) error {
+func UpdateGroup(condition map[string]interface{}, params map[string]interface{}) error {
 	var group Group
 	err := db.Model(&group).Where(condition).Updates(params).Error
 

@@ -1,18 +1,18 @@
 func GetTableById(id int) (Table, bool) {
 	var table Table
-	ok := db.Where("primary_key = ?", id).First(&table).RecordNotFound()
+	ok := db.First(&table, id).RecordNotFound()
 
 	return table, ok
 }
 
-func GetTableByOne(condition []string) (Table, bool) {
+func GetTableByOne(condition map[string]interface{}) (Table, bool) {
 	var table Table
 	ok := db.Where(condition).First(&table).RecordNotFound()
 
 	return table, ok
 }
 
-func GetTableList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetTableList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	tables := make([]*Table, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -28,7 +28,7 @@ func GetTableList(condition []string, page int, pageSize int, orderBy []string) 
 	return tables, err
 }
 
-func GetTableCount(condition []string) int {
+func GetTableCount(condition map[string]interface{}) int {
 	var table Table
 	count := 0
 	db.Where(condition).Find(&table).Count(&count)
@@ -36,7 +36,7 @@ func GetTableCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetTableList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -68,7 +68,7 @@ func CreateTable(table Table) (Table, error) {
 	return table, err
 }
 
-func UpdateTable(condition []string, params map[string]interface{}) error {
+func UpdateTable(condition map[string]interface{}, params map[string]interface{}) error {
 	var table Table
 	err := db.Model(&table).Where(condition).Updates(params).Error
 

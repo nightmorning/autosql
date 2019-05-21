@@ -14,19 +14,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetCadreById(id int) (Cadre, bool) {
 	var cadre Cadre
-	ok := db.Where("cadre_id = ?", id).First(&cadre).RecordNotFound()
+	ok := db.First(&cadre, id).RecordNotFound()
 
 	return cadre, ok
 }
 
-func GetCadreByOne(condition []string) (Cadre, bool) {
+func GetCadreByOne(condition map[string]interface{}) (Cadre, bool) {
 	var cadre Cadre
 	ok := db.Where(condition).First(&cadre).RecordNotFound()
 
 	return cadre, ok
 }
 
-func GetCadreList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetCadreList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	cadres := make([]*Cadre, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -42,7 +42,7 @@ func GetCadreList(condition []string, page int, pageSize int, orderBy []string) 
 	return cadres, err
 }
 
-func GetCadreCount(condition []string) int {
+func GetCadreCount(condition map[string]interface{}) int {
 	var cadre Cadre
 	count := 0
 	db.Where(condition).Find(&cadre).Count(&count)
@@ -50,7 +50,7 @@ func GetCadreCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetCadreList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -82,7 +82,7 @@ func CreateCadre(cadre Cadre) (Cadre, error) {
 	return cadre, err
 }
 
-func UpdateCadre(condition []string, params map[string]interface{}) error {
+func UpdateCadre(condition map[string]interface{}, params map[string]interface{}) error {
 	var cadre Cadre
 	err := db.Model(&cadre).Where(condition).Updates(params).Error
 

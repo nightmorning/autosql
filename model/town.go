@@ -7,19 +7,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetTownById(id int) (Town, bool) {
 	var town Town
-	ok := db.Where("town_id = ?", id).First(&town).RecordNotFound()
+	ok := db.First(&town, id).RecordNotFound()
 
 	return town, ok
 }
 
-func GetTownByOne(condition []string) (Town, bool) {
+func GetTownByOne(condition map[string]interface{}) (Town, bool) {
 	var town Town
 	ok := db.Where(condition).First(&town).RecordNotFound()
 
 	return town, ok
 }
 
-func GetTownList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetTownList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	towns := make([]*Town, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -35,7 +35,7 @@ func GetTownList(condition []string, page int, pageSize int, orderBy []string) (
 	return towns, err
 }
 
-func GetTownCount(condition []string) int {
+func GetTownCount(condition map[string]interface{}) int {
 	var town Town
 	count := 0
 	db.Where(condition).Find(&town).Count(&count)
@@ -43,7 +43,7 @@ func GetTownCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetTownList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -75,7 +75,7 @@ func CreateTown(town Town) (Town, error) {
 	return town, err
 }
 
-func UpdateTown(condition []string, params map[string]interface{}) error {
+func UpdateTown(condition map[string]interface{}, params map[string]interface{}) error {
 	var town Town
 	err := db.Model(&town).Where(condition).Updates(params).Error
 

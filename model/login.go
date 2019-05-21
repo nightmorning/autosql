@@ -9,19 +9,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetLoginById(id int) (Login, bool) {
 	var login Login
-	ok := db.Where("login_id = ?", id).First(&login).RecordNotFound()
+	ok := db.First(&login, id).RecordNotFound()
 
 	return login, ok
 }
 
-func GetLoginByOne(condition []string) (Login, bool) {
+func GetLoginByOne(condition map[string]interface{}) (Login, bool) {
 	var login Login
 	ok := db.Where(condition).First(&login).RecordNotFound()
 
 	return login, ok
 }
 
-func GetLoginList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetLoginList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	logins := make([]*Login, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -37,7 +37,7 @@ func GetLoginList(condition []string, page int, pageSize int, orderBy []string) 
 	return logins, err
 }
 
-func GetLoginCount(condition []string) int {
+func GetLoginCount(condition map[string]interface{}) int {
 	var login Login
 	count := 0
 	db.Where(condition).Find(&login).Count(&count)
@@ -45,7 +45,7 @@ func GetLoginCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetLoginList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -77,7 +77,7 @@ func CreateLogin(login Login) (Login, error) {
 	return login, err
 }
 
-func UpdateLogin(condition []string, params map[string]interface{}) error {
+func UpdateLogin(condition map[string]interface{}, params map[string]interface{}) error {
 	var login Login
 	err := db.Model(&login).Where(condition).Updates(params).Error
 

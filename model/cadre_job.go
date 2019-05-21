@@ -9,19 +9,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetCadreJobById(id int) (CadreJob, bool) {
 	var cadre_job CadreJob
-	ok := db.Where("job_id = ?", id).First(&cadre_job).RecordNotFound()
+	ok := db.First(&cadre_job, id).RecordNotFound()
 
 	return cadre_job, ok
 }
 
-func GetCadreJobByOne(condition []string) (CadreJob, bool) {
+func GetCadreJobByOne(condition map[string]interface{}) (CadreJob, bool) {
 	var cadre_job CadreJob
 	ok := db.Where(condition).First(&cadre_job).RecordNotFound()
 
 	return cadre_job, ok
 }
 
-func GetCadreJobList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetCadreJobList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	cadre_jobs := make([]*CadreJob, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -37,7 +37,7 @@ func GetCadreJobList(condition []string, page int, pageSize int, orderBy []strin
 	return cadre_jobs, err
 }
 
-func GetCadreJobCount(condition []string) int {
+func GetCadreJobCount(condition map[string]interface{}) int {
 	var cadre_job CadreJob
 	count := 0
 	db.Where(condition).Find(&cadre_job).Count(&count)
@@ -45,7 +45,7 @@ func GetCadreJobCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetCadreJobList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -77,7 +77,7 @@ func CreateCadreJob(cadre_job CadreJob) (CadreJob, error) {
 	return cadre_job, err
 }
 
-func UpdateCadreJob(condition []string, params map[string]interface{}) error {
+func UpdateCadreJob(condition map[string]interface{}, params map[string]interface{}) error {
 	var cadre_job CadreJob
 	err := db.Model(&cadre_job).Where(condition).Updates(params).Error
 

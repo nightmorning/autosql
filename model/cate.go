@@ -9,19 +9,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetCateById(id int) (Cate, bool) {
 	var cate Cate
-	ok := db.Where("cate_id = ?", id).First(&cate).RecordNotFound()
+	ok := db.First(&cate, id).RecordNotFound()
 
 	return cate, ok
 }
 
-func GetCateByOne(condition []string) (Cate, bool) {
+func GetCateByOne(condition map[string]interface{}) (Cate, bool) {
 	var cate Cate
 	ok := db.Where(condition).First(&cate).RecordNotFound()
 
 	return cate, ok
 }
 
-func GetCateList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetCateList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	cates := make([]*Cate, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -37,7 +37,7 @@ func GetCateList(condition []string, page int, pageSize int, orderBy []string) (
 	return cates, err
 }
 
-func GetCateCount(condition []string) int {
+func GetCateCount(condition map[string]interface{}) int {
 	var cate Cate
 	count := 0
 	db.Where(condition).Find(&cate).Count(&count)
@@ -45,7 +45,7 @@ func GetCateCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetCateList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -77,7 +77,7 @@ func CreateCate(cate Cate) (Cate, error) {
 	return cate, err
 }
 
-func UpdateCate(condition []string, params map[string]interface{}) error {
+func UpdateCate(condition map[string]interface{}, params map[string]interface{}) error {
 	var cate Cate
 	err := db.Model(&cate).Where(condition).Updates(params).Error
 

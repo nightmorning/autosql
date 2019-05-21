@@ -13,19 +13,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetArticleCommentById(id int) (ArticleComment, bool) {
 	var article_comment ArticleComment
-	ok := db.Where("comment_id = ?", id).First(&article_comment).RecordNotFound()
+	ok := db.First(&article_comment, id).RecordNotFound()
 
 	return article_comment, ok
 }
 
-func GetArticleCommentByOne(condition []string) (ArticleComment, bool) {
+func GetArticleCommentByOne(condition map[string]interface{}) (ArticleComment, bool) {
 	var article_comment ArticleComment
 	ok := db.Where(condition).First(&article_comment).RecordNotFound()
 
 	return article_comment, ok
 }
 
-func GetArticleCommentList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetArticleCommentList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	article_comments := make([]*ArticleComment, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -41,7 +41,7 @@ func GetArticleCommentList(condition []string, page int, pageSize int, orderBy [
 	return article_comments, err
 }
 
-func GetArticleCommentCount(condition []string) int {
+func GetArticleCommentCount(condition map[string]interface{}) int {
 	var article_comment ArticleComment
 	count := 0
 	db.Where(condition).Find(&article_comment).Count(&count)
@@ -49,7 +49,7 @@ func GetArticleCommentCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetArticleCommentList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -81,7 +81,7 @@ func CreateArticleComment(article_comment ArticleComment) (ArticleComment, error
 	return article_comment, err
 }
 
-func UpdateArticleComment(condition []string, params map[string]interface{}) error {
+func UpdateArticleComment(condition map[string]interface{}, params map[string]interface{}) error {
 	var article_comment ArticleComment
 	err := db.Model(&article_comment).Where(condition).Updates(params).Error
 

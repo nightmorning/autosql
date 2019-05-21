@@ -11,19 +11,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetBusinessById(id int) (Business, bool) {
 	var business Business
-	ok := db.Where("business_id = ?", id).First(&business).RecordNotFound()
+	ok := db.First(&business, id).RecordNotFound()
 
 	return business, ok
 }
 
-func GetBusinessByOne(condition []string) (Business, bool) {
+func GetBusinessByOne(condition map[string]interface{}) (Business, bool) {
 	var business Business
 	ok := db.Where(condition).First(&business).RecordNotFound()
 
 	return business, ok
 }
 
-func GetBusinessList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetBusinessList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	businesss := make([]*Business, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -39,7 +39,7 @@ func GetBusinessList(condition []string, page int, pageSize int, orderBy []strin
 	return businesss, err
 }
 
-func GetBusinessCount(condition []string) int {
+func GetBusinessCount(condition map[string]interface{}) int {
 	var business Business
 	count := 0
 	db.Where(condition).Find(&business).Count(&count)
@@ -47,7 +47,7 @@ func GetBusinessCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetBusinessList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -79,7 +79,7 @@ func CreateBusiness(business Business) (Business, error) {
 	return business, err
 }
 
-func UpdateBusiness(condition []string, params map[string]interface{}) error {
+func UpdateBusiness(condition map[string]interface{}, params map[string]interface{}) error {
 	var business Business
 	err := db.Model(&business).Where(condition).Updates(params).Error
 

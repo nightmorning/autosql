@@ -9,19 +9,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetCadreServerById(id int) (CadreServer, bool) {
 	var cadre_server CadreServer
-	ok := db.Where("server_id = ?", id).First(&cadre_server).RecordNotFound()
+	ok := db.First(&cadre_server, id).RecordNotFound()
 
 	return cadre_server, ok
 }
 
-func GetCadreServerByOne(condition []string) (CadreServer, bool) {
+func GetCadreServerByOne(condition map[string]interface{}) (CadreServer, bool) {
 	var cadre_server CadreServer
 	ok := db.Where(condition).First(&cadre_server).RecordNotFound()
 
 	return cadre_server, ok
 }
 
-func GetCadreServerList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetCadreServerList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	cadre_servers := make([]*CadreServer, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -37,7 +37,7 @@ func GetCadreServerList(condition []string, page int, pageSize int, orderBy []st
 	return cadre_servers, err
 }
 
-func GetCadreServerCount(condition []string) int {
+func GetCadreServerCount(condition map[string]interface{}) int {
 	var cadre_server CadreServer
 	count := 0
 	db.Where(condition).Find(&cadre_server).Count(&count)
@@ -45,7 +45,7 @@ func GetCadreServerCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetCadreServerList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -77,7 +77,7 @@ func CreateCadreServer(cadre_server CadreServer) (CadreServer, error) {
 	return cadre_server, err
 }
 
-func UpdateCadreServer(condition []string, params map[string]interface{}) error {
+func UpdateCadreServer(condition map[string]interface{}, params map[string]interface{}) error {
 	var cadre_server CadreServer
 	err := db.Model(&cadre_server).Where(condition).Updates(params).Error
 

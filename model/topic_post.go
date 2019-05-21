@@ -11,19 +11,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetTopicPostById(id int) (TopicPost, bool) {
 	var topic_post TopicPost
-	ok := db.Where("post_id = ?", id).First(&topic_post).RecordNotFound()
+	ok := db.First(&topic_post, id).RecordNotFound()
 
 	return topic_post, ok
 }
 
-func GetTopicPostByOne(condition []string) (TopicPost, bool) {
+func GetTopicPostByOne(condition map[string]interface{}) (TopicPost, bool) {
 	var topic_post TopicPost
 	ok := db.Where(condition).First(&topic_post).RecordNotFound()
 
 	return topic_post, ok
 }
 
-func GetTopicPostList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetTopicPostList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	topic_posts := make([]*TopicPost, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -39,7 +39,7 @@ func GetTopicPostList(condition []string, page int, pageSize int, orderBy []stri
 	return topic_posts, err
 }
 
-func GetTopicPostCount(condition []string) int {
+func GetTopicPostCount(condition map[string]interface{}) int {
 	var topic_post TopicPost
 	count := 0
 	db.Where(condition).Find(&topic_post).Count(&count)
@@ -47,7 +47,7 @@ func GetTopicPostCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetTopicPostList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -79,7 +79,7 @@ func CreateTopicPost(topic_post TopicPost) (TopicPost, error) {
 	return topic_post, err
 }
 
-func UpdateTopicPost(condition []string, params map[string]interface{}) error {
+func UpdateTopicPost(condition map[string]interface{}, params map[string]interface{}) error {
 	var topic_post TopicPost
 	err := db.Model(&topic_post).Where(condition).Updates(params).Error
 

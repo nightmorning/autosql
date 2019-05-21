@@ -33,7 +33,7 @@ func GetBookById(id int) (Book, bool) {
 	return book, ok
 }
 
-func GetBookByOne(condition []string) (Book, bool) {
+func GetBookByOne(condition map[string]interface{}) (Book, bool) {
 	var book Book
 	ok := db.SqlDB.Where(condition).First(&book).RecordNotFound()
 

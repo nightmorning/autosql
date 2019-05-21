@@ -9,19 +9,19 @@ UpdatedAt int `json:"updated_at"`
 }
 func GetHomeManageById(id int) (HomeManage, bool) {
 	var home_manage HomeManage
-	ok := db.Where("manage_id = ?", id).First(&home_manage).RecordNotFound()
+	ok := db.First(&home_manage, id).RecordNotFound()
 
 	return home_manage, ok
 }
 
-func GetHomeManageByOne(condition []string) (HomeManage, bool) {
+func GetHomeManageByOne(condition map[string]interface{}) (HomeManage, bool) {
 	var home_manage HomeManage
 	ok := db.Where(condition).First(&home_manage).RecordNotFound()
 
 	return home_manage, ok
 }
 
-func GetHomeManageList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetHomeManageList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	home_manages := make([]*HomeManage, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -37,7 +37,7 @@ func GetHomeManageList(condition []string, page int, pageSize int, orderBy []str
 	return home_manages, err
 }
 
-func GetHomeManageCount(condition []string) int {
+func GetHomeManageCount(condition map[string]interface{}) int {
 	var home_manage HomeManage
 	count := 0
 	db.Where(condition).Find(&home_manage).Count(&count)
@@ -45,7 +45,7 @@ func GetHomeManageCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetHomeManageList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -77,7 +77,7 @@ func CreateHomeManage(home_manage HomeManage) (HomeManage, error) {
 	return home_manage, err
 }
 
-func UpdateHomeManage(condition []string, params map[string]interface{}) error {
+func UpdateHomeManage(condition map[string]interface{}, params map[string]interface{}) error {
 	var home_manage HomeManage
 	err := db.Model(&home_manage).Where(condition).Updates(params).Error
 

@@ -10,19 +10,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetAssistById(id int) (Assist, bool) {
 	var assist Assist
-	ok := db.Where("assist_id = ?", id).First(&assist).RecordNotFound()
+	ok := db.First(&assist, id).RecordNotFound()
 
 	return assist, ok
 }
 
-func GetAssistByOne(condition []string) (Assist, bool) {
+func GetAssistByOne(condition map[string]interface{}) (Assist, bool) {
 	var assist Assist
 	ok := db.Where(condition).First(&assist).RecordNotFound()
 
 	return assist, ok
 }
 
-func GetAssistList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetAssistList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	assists := make([]*Assist, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -38,7 +38,7 @@ func GetAssistList(condition []string, page int, pageSize int, orderBy []string)
 	return assists, err
 }
 
-func GetAssistCount(condition []string) int {
+func GetAssistCount(condition map[string]interface{}) int {
 	var assist Assist
 	count := 0
 	db.Where(condition).Find(&assist).Count(&count)
@@ -46,7 +46,7 @@ func GetAssistCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetAssistList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -78,7 +78,7 @@ func CreateAssist(assist Assist) (Assist, error) {
 	return assist, err
 }
 
-func UpdateAssist(condition []string, params map[string]interface{}) error {
+func UpdateAssist(condition map[string]interface{}, params map[string]interface{}) error {
 	var assist Assist
 	err := db.Model(&assist).Where(condition).Updates(params).Error
 

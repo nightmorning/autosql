@@ -9,19 +9,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetVillageById(id int) (Village, bool) {
 	var village Village
-	ok := db.Where(" village_id = ?", id).First(&village).RecordNotFound()
+	ok := db.First(&village, id).RecordNotFound()
 
 	return village, ok
 }
 
-func GetVillageByOne(condition []string) (Village, bool) {
+func GetVillageByOne(condition map[string]interface{}) (Village, bool) {
 	var village Village
 	ok := db.Where(condition).First(&village).RecordNotFound()
 
 	return village, ok
 }
 
-func GetVillageList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetVillageList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	villages := make([]*Village, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -37,7 +37,7 @@ func GetVillageList(condition []string, page int, pageSize int, orderBy []string
 	return villages, err
 }
 
-func GetVillageCount(condition []string) int {
+func GetVillageCount(condition map[string]interface{}) int {
 	var village Village
 	count := 0
 	db.Where(condition).Find(&village).Count(&count)
@@ -45,7 +45,7 @@ func GetVillageCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetVillageList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -77,7 +77,7 @@ func CreateVillage(village Village) (Village, error) {
 	return village, err
 }
 
-func UpdateVillage(condition []string, params map[string]interface{}) error {
+func UpdateVillage(condition map[string]interface{}, params map[string]interface{}) error {
 	var village Village
 	err := db.Model(&village).Where(condition).Updates(params).Error
 

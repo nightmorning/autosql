@@ -10,19 +10,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetMenuManageById(id int) (MenuManage, bool) {
 	var menu_manage MenuManage
-	ok := db.Where("menu_manage_id = ?", id).First(&menu_manage).RecordNotFound()
+	ok := db.First(&menu_manage, id).RecordNotFound()
 
 	return menu_manage, ok
 }
 
-func GetMenuManageByOne(condition []string) (MenuManage, bool) {
+func GetMenuManageByOne(condition map[string]interface{}) (MenuManage, bool) {
 	var menu_manage MenuManage
 	ok := db.Where(condition).First(&menu_manage).RecordNotFound()
 
 	return menu_manage, ok
 }
 
-func GetMenuManageList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetMenuManageList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	menu_manages := make([]*MenuManage, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -38,7 +38,7 @@ func GetMenuManageList(condition []string, page int, pageSize int, orderBy []str
 	return menu_manages, err
 }
 
-func GetMenuManageCount(condition []string) int {
+func GetMenuManageCount(condition map[string]interface{}) int {
 	var menu_manage MenuManage
 	count := 0
 	db.Where(condition).Find(&menu_manage).Count(&count)
@@ -46,7 +46,7 @@ func GetMenuManageCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetMenuManageList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -78,7 +78,7 @@ func CreateMenuManage(menu_manage MenuManage) (MenuManage, error) {
 	return menu_manage, err
 }
 
-func UpdateMenuManage(condition []string, params map[string]interface{}) error {
+func UpdateMenuManage(condition map[string]interface{}, params map[string]interface{}) error {
 	var menu_manage MenuManage
 	err := db.Model(&menu_manage).Where(condition).Updates(params).Error
 

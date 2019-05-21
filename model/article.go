@@ -1,9 +1,6 @@
 package model
 
-import (
-	"autosql/common"
-	"strings"
-)
+import "strings"
 
 type Article struct {
  ArticleId int `gorm:"primary_key;AUTO_INCREMENT" json:" article_id"`
@@ -24,19 +21,19 @@ UpdatedAt int `json:"updated_at"`
 }
 func GetArticleById(id int) (Article, bool) {
 	var article Article
-	ok := db.Where(" article_id = ?", id).First(&article).RecordNotFound()
+	ok := db.First(&article, id).RecordNotFound()
 
 	return article, ok
 }
 
-func GetArticleByOne(condition []string) (Article, bool) {
+func GetArticleByOne(condition map[string]interface{}) (Article, bool) {
 	var article Article
 	ok := db.Where(condition).First(&article).RecordNotFound()
 
 	return article, ok
 }
 
-func GetArticleList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetArticleList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	articles := make([]*Article, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -52,7 +49,7 @@ func GetArticleList(condition []string, page int, pageSize int, orderBy []string
 	return articles, err
 }
 
-func GetArticleCount(condition []string) int {
+func GetArticleCount(condition map[string]interface{}) int {
 	var article Article
 	count := 0
 	db.Where(condition).Find(&article).Count(&count)
@@ -60,7 +57,7 @@ func GetArticleCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetArticleList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -92,7 +89,7 @@ func CreateArticle(article Article) (Article, error) {
 	return article, err
 }
 
-func UpdateArticle(condition []string, params map[string]interface{}) error {
+func UpdateArticle(condition map[string]interface{}, params map[string]interface{}) error {
 	var article Article
 	err := db.Model(&article).Where(condition).Updates(params).Error
 

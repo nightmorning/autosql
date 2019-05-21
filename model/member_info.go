@@ -21,19 +21,19 @@ UpdatedAt int `json:"updated_at"`
 }
 func GetMemberInfoById(id int) (MemberInfo, bool) {
 	var member_info MemberInfo
-	ok := db.Where("member_info_id = ?", id).First(&member_info).RecordNotFound()
+	ok := db.First(&member_info, id).RecordNotFound()
 
 	return member_info, ok
 }
 
-func GetMemberInfoByOne(condition []string) (MemberInfo, bool) {
+func GetMemberInfoByOne(condition map[string]interface{}) (MemberInfo, bool) {
 	var member_info MemberInfo
 	ok := db.Where(condition).First(&member_info).RecordNotFound()
 
 	return member_info, ok
 }
 
-func GetMemberInfoList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetMemberInfoList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	member_infos := make([]*MemberInfo, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -49,7 +49,7 @@ func GetMemberInfoList(condition []string, page int, pageSize int, orderBy []str
 	return member_infos, err
 }
 
-func GetMemberInfoCount(condition []string) int {
+func GetMemberInfoCount(condition map[string]interface{}) int {
 	var member_info MemberInfo
 	count := 0
 	db.Where(condition).Find(&member_info).Count(&count)
@@ -57,7 +57,7 @@ func GetMemberInfoCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetMemberInfoList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -89,7 +89,7 @@ func CreateMemberInfo(member_info MemberInfo) (MemberInfo, error) {
 	return member_info, err
 }
 
-func UpdateMemberInfo(condition []string, params map[string]interface{}) error {
+func UpdateMemberInfo(condition map[string]interface{}, params map[string]interface{}) error {
 	var member_info MemberInfo
 	err := db.Model(&member_info).Where(condition).Updates(params).Error
 

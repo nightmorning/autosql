@@ -10,19 +10,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetMobileCodeById(id int) (MobileCode, bool) {
 	var mobile_code MobileCode
-	ok := db.Where("code_id = ?", id).First(&mobile_code).RecordNotFound()
+	ok := db.First(&mobile_code, id).RecordNotFound()
 
 	return mobile_code, ok
 }
 
-func GetMobileCodeByOne(condition []string) (MobileCode, bool) {
+func GetMobileCodeByOne(condition map[string]interface{}) (MobileCode, bool) {
 	var mobile_code MobileCode
 	ok := db.Where(condition).First(&mobile_code).RecordNotFound()
 
 	return mobile_code, ok
 }
 
-func GetMobileCodeList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetMobileCodeList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	mobile_codes := make([]*MobileCode, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -38,7 +38,7 @@ func GetMobileCodeList(condition []string, page int, pageSize int, orderBy []str
 	return mobile_codes, err
 }
 
-func GetMobileCodeCount(condition []string) int {
+func GetMobileCodeCount(condition map[string]interface{}) int {
 	var mobile_code MobileCode
 	count := 0
 	db.Where(condition).Find(&mobile_code).Count(&count)
@@ -46,7 +46,7 @@ func GetMobileCodeCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetMobileCodeList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -78,7 +78,7 @@ func CreateMobileCode(mobile_code MobileCode) (MobileCode, error) {
 	return mobile_code, err
 }
 
-func UpdateMobileCode(condition []string, params map[string]interface{}) error {
+func UpdateMobileCode(condition map[string]interface{}, params map[string]interface{}) error {
 	var mobile_code MobileCode
 	err := db.Model(&mobile_code).Where(condition).Updates(params).Error
 

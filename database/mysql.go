@@ -45,7 +45,6 @@ func Init()  {
 		filename := table+".go"
 		text := "package model\n\n"
 		text += "type " + common.CamelString(table) + " struct {\n"
-		primaryId := ""
 		for _, field := range fields {
 			//fileText,err := file.ReadAll("/sql/gorm.go")
 			primaryKey := ""
@@ -64,7 +63,6 @@ func Init()  {
 			if field[3] == "PRI" {
 				text += "`gorm:\"primary_key;"
 				primaryKey = field[0]
-				primaryId = field[0]
 			}
 
 			if field[5] == "auto_increment" {
@@ -88,7 +86,6 @@ func Init()  {
 		content := string(fileText)
 		content = strings.Replace(content, "table", table, -1)
 		content = strings.Replace(content, "Table", common.CamelString(table), -1)
-		content = strings.Replace(content, "primary_key", primaryId, -1)
 		text += content
 		file.CreateModelFile(path, filename, "gorm", text)
 

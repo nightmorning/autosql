@@ -10,19 +10,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetStationById(id int) (Station, bool) {
 	var station Station
-	ok := db.Where("station_id = ?", id).First(&station).RecordNotFound()
+	ok := db.First(&station, id).RecordNotFound()
 
 	return station, ok
 }
 
-func GetStationByOne(condition []string) (Station, bool) {
+func GetStationByOne(condition map[string]interface{}) (Station, bool) {
 	var station Station
 	ok := db.Where(condition).First(&station).RecordNotFound()
 
 	return station, ok
 }
 
-func GetStationList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetStationList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	stations := make([]*Station, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -38,7 +38,7 @@ func GetStationList(condition []string, page int, pageSize int, orderBy []string
 	return stations, err
 }
 
-func GetStationCount(condition []string) int {
+func GetStationCount(condition map[string]interface{}) int {
 	var station Station
 	count := 0
 	db.Where(condition).Find(&station).Count(&count)
@@ -46,7 +46,7 @@ func GetStationCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetStationList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -78,7 +78,7 @@ func CreateStation(station Station) (Station, error) {
 	return station, err
 }
 
-func UpdateStation(condition []string, params map[string]interface{}) error {
+func UpdateStation(condition map[string]interface{}, params map[string]interface{}) error {
 	var station Station
 	err := db.Model(&station).Where(condition).Updates(params).Error
 

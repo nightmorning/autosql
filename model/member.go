@@ -16,19 +16,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetMemberById(id int) (Member, bool) {
 	var member Member
-	ok := db.Where("member_id = ?", id).First(&member).RecordNotFound()
+	ok := db.First(&member, id).RecordNotFound()
 
 	return member, ok
 }
 
-func GetMemberByOne(condition []string) (Member, bool) {
+func GetMemberByOne(condition map[string]interface{}) (Member, bool) {
 	var member Member
 	ok := db.Where(condition).First(&member).RecordNotFound()
 
 	return member, ok
 }
 
-func GetMemberList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetMemberList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	members := make([]*Member, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -44,7 +44,7 @@ func GetMemberList(condition []string, page int, pageSize int, orderBy []string)
 	return members, err
 }
 
-func GetMemberCount(condition []string) int {
+func GetMemberCount(condition map[string]interface{}) int {
 	var member Member
 	count := 0
 	db.Where(condition).Find(&member).Count(&count)
@@ -52,7 +52,7 @@ func GetMemberCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetMemberList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -84,7 +84,7 @@ func CreateMember(member Member) (Member, error) {
 	return member, err
 }
 
-func UpdateMember(condition []string, params map[string]interface{}) error {
+func UpdateMember(condition map[string]interface{}, params map[string]interface{}) error {
 	var member Member
 	err := db.Model(&member).Where(condition).Updates(params).Error
 

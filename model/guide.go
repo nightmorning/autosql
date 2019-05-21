@@ -9,19 +9,19 @@ CreatedAt int `json:"created_at"`
 }
 func GetGuideById(id int) (Guide, bool) {
 	var guide Guide
-	ok := db.Where("guide_id = ?", id).First(&guide).RecordNotFound()
+	ok := db.First(&guide, id).RecordNotFound()
 
 	return guide, ok
 }
 
-func GetGuideByOne(condition []string) (Guide, bool) {
+func GetGuideByOne(condition map[string]interface{}) (Guide, bool) {
 	var guide Guide
 	ok := db.Where(condition).First(&guide).RecordNotFound()
 
 	return guide, ok
 }
 
-func GetGuideList(condition []string, page int, pageSize int, orderBy []string) (interface{}, error) {
+func GetGuideList(condition map[string]interface{}, page int, pageSize int, orderBy []string) (interface{}, error) {
 	guides := make([]*Guide, 0)
 	orderBys := strings.Join(orderBy, ",");
 
@@ -37,7 +37,7 @@ func GetGuideList(condition []string, page int, pageSize int, orderBy []string) 
 	return guides, err
 }
 
-func GetGuideCount(condition []string) int {
+func GetGuideCount(condition map[string]interface{}) int {
 	var guide Guide
 	count := 0
 	db.Where(condition).Find(&guide).Count(&count)
@@ -45,7 +45,7 @@ func GetGuideCount(condition []string) int {
 	return count
 }
 
-func GetPageUtil(condition []string, page int, pageSize int, orderBy []string) common.Page {
+func GetPageUtil(condition map[string]interface{}, page int, pageSize int, orderBy []string) common.Page {
 	list,err := GetGuideList(condition, page, pageSize, orderBy)
 	if err != nil {
 		log.Fatal(err)
@@ -77,7 +77,7 @@ func CreateGuide(guide Guide) (Guide, error) {
 	return guide, err
 }
 
-func UpdateGuide(condition []string, params map[string]interface{}) error {
+func UpdateGuide(condition map[string]interface{}, params map[string]interface{}) error {
 	var guide Guide
 	err := db.Model(&guide).Where(condition).Updates(params).Error
 
