@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log"
 	"strings"
-)
+	)
 
 var db *sql.DB
 
@@ -20,17 +20,28 @@ type Table struct {
 	Extra string
 }
 
-func Init()  {
+type Database struct {
+	User string
+	Password string
+	Addr string
+	Port string
+	Db string
+	Prefix string
+}
+
+
+func Init(database Database)  {
 	var err error
-	db, err = sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/ay_wisdom?charset=utf8")
+	sourceName := database.User + ":" + database.Password + "@tcp(" + database.Addr + ":" + database.Port + ")/" + database.Db + "?charset=utf8"
+	db, err = sql.Open("mysql", sourceName)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
-	prefix := "ay_"
+	prefix := database.Prefix
 	length := len(prefix)
 	tables := GetTables()
-	fmt.Println(tables)
+	//fmt.Println(tables)
 
 	fields := make([][]string, 100)
 	for _,table := range tables {
@@ -38,9 +49,10 @@ func Init()  {
 			continue
 		}
 		lengths := len(table)
+
 		fields = GetFields(table)
 		table = table[length:lengths]
-		//fmt.Println(fields)
+		fmt.Println(table)
 		path := "./model"
 		filename := table+".go"
 		text := "package model\n\n"
@@ -52,11 +64,14 @@ func Init()  {
 				log.Fatal(err)
 			}
 			//fileContent := string(fileText)
-			fmt.Println(field)
 			if field == nil {
 				break
 			}
 
+			if len(field) == 0 {
+				break
+			}
+			//fmt.Println(field)
 			field[0] = strings.ReplaceAll(field[0], "\r\n", "")
 			text += common.CamelString(field[0]) + " int "
 

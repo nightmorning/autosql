@@ -2,32 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43d5015d-d7ee-4684-a9af-c6808065bf72" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/mysql.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/article.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/article.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/article_comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/article_comment.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/assist.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/assist.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/business.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/business.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/cadre.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/cadre.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/cadre_job.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/cadre_job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/cadre_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/cadre_server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/cate.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/cate.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/group.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/guide.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/guide.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/home_manage.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/home_manage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/member.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/member.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/member_info.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/member_info.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/menu_manage.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/menu_manage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/mobile_code.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/mobile_code.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/station.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/station.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/topic.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/topic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/topic_post.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/topic_post.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/town.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/town.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/village.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/village.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/gorm.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql/gorm.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/gorm.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sql/gorm.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/article.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/article_comment.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/assist.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/business.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/cadre.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/cadre_job.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/cadre_server.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/cate.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/group.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/guide.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/home_manage.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/login.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/member.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/member_info.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/menu_manage.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/mobile_code.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/station.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/topic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/topic_post.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/town.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/village.go" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,44 +69,57 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-970274436">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="go" value="8" />
+          <entry key="md" value="1" />
+          <entry key="mod" value="1" />
+          <entry key="sum" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="DTD" value="1" />
+          <entry key="Go" value="8" />
+          <entry key="PLAIN_TEXT" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="go" value="321" />
+          <entry key="md" value="51" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Go" value="321" />
+          <entry key="PLAIN_TEXT" value="51" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.go.postfix.template.usages.trigger">
+        <counts>
+          <entry key=".len" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/mysql.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="87" column="82" selection-start-line="87" selection-start-column="82" selection-end-line="87" selection-end-column="82" />
+            <state relative-caret-position="-4322">
+              <caret line="50" column="29" lean-forward="true" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
               <folding>
-                <element signature="e#18#58#0" expanded="true" />
+                <element signature="e#18#103#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/article.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/util.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/database/sql/sql.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="2756" selection-start-line="2756" selection-end-line="2756" />
             </state>
           </provider>
         </entry>
@@ -115,18 +127,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sql/gorm.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="35" column="50" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
-              <folding>
-                <element signature="e#15#61#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-3101">
+              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/util.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="3" column="23" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/page.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="33">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sql/gorm.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2310">
+              <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -139,19 +179,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sql/gorm.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/go.mod">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="264">
+              <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="23" />
               <folding>
                 <element signature="e#14#80#0" expanded="true" />
               </folding>
@@ -162,7 +198,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/file/file.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1161">
+            <state relative-caret-position="1419">
               <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
             </state>
           </provider>
@@ -180,12 +216,13 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>db.SqlDB</find>
+      <find>fmt</find>
     </findStrings>
     <replaceStrings>
       <replace>db</replace>
     </replaceStrings>
   </component>
-  <component name="GOROOT" path="C:\Go" />
+  <component name="GOROOT" path="D:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -193,14 +230,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/page.go" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/file/file.go" />
         <option value="$PROJECT_DIR$/common/util.go" />
         <option value="$PROJECT_DIR$/../model/article.go" />
         <option value="$PROJECT_DIR$/sql/gorm.go" />
         <option value="$PROJECT_DIR$/sql/gorm.txt" />
+        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/model/article.go" />
         <option value="$PROJECT_DIR$/database/mysql.go" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -211,8 +249,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="446" />
-    <option name="y" value="13" />
+    <option name="x" value="138" />
+    <option name="y" value="53" />
     <option name="width" value="1400" />
     <option name="height" value="1026" />
   </component>
@@ -254,10 +292,6 @@
               <item name="autosql" type="b2602c69:ProjectViewProjectNode" />
               <item name="autosql" type="462c0819:PsiDirectoryNode" />
               <item name="sql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autosql" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
               <item name="autosql" type="b2602c69:ProjectViewProjectNode" />
@@ -317,24 +351,24 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32954547" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32954547" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31848553" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.33986175" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,72 +378,47 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../rpcx/server.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../rpcx/client.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/page.go">
+    <entry file="file://$PROJECT_DIR$/../rpcx/server.go" />
+    <entry file="file://$PROJECT_DIR$/../rpcx/client.go" />
+    <entry file="file://C:/Go/src/sync/rwmutex.go" />
+    <entry file="file://$PROJECT_DIR$/../model/ay_article.go" />
+    <entry file="file://C:/Go/src/database/sql/sql.go" />
+    <entry file="file://$PROJECT_DIR$/../model/article_comment.go" />
+    <entry file="file://C:/Go/src/strings/strings.go" />
+    <entry file="file://$PROJECT_DIR$/../model/article.go" />
+    <entry file="file://D:/Go/src/sync/rwmutex.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/sync/rwmutex.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
+        <state relative-caret-position="185">
           <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/Go/src/database/sql/sql.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="2756" selection-start-line="2756" selection-end-line="2756" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/article.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1881">
+          <caret line="57" column="95" selection-start-line="57" selection-start-column="95" selection-end-line="57" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/e.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="264">
+          <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="23" />
           <folding>
             <element signature="e#14#80#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../model/ay_article.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/util.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/database/sql/sql.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="2756" selection-start-line="2756" selection-end-line="2756" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../model/article_comment.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://C:/Go/src/strings/strings.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="847" column="5" selection-start-line="847" selection-start-column="5" selection-end-line="847" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../model/article.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/go.sum">
       <provider selected="true" editor-type-id="text-editor">
@@ -418,44 +427,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/go.mod">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/page.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/file/file.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1161">
+        <state relative-caret-position="1419">
           <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/gorm.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="35" column="50" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
-          <folding>
-            <element signature="e#15#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/gorm.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/article.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/mysql.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="87" column="82" selection-start-line="87" selection-start-column="82" selection-end-line="87" selection-end-column="82" />
+        <state relative-caret-position="-4322">
+          <caret line="50" column="29" lean-forward="true" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
           <folding>
-            <element signature="e#18#58#0" expanded="true" />
+            <element signature="e#18#103#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/gorm.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3101">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/gorm.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="70" column="49" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
         </state>
       </provider>
     </entry>

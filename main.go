@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	database.Init()
-
-
+	data := database.Database{User:"root", Password:"root", Addr:"127.0.0.1", Port:"3306", Db:"ay_wisdom", Prefix:"ay_"}
+	database.Init(data)
 }
